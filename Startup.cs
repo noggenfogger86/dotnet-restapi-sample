@@ -154,6 +154,7 @@ namespace ApiSkeleton
             using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
             var context = serviceScope.ServiceProvider.GetService<DataContext>();
 #if DEBUG
+            context.Database.EnsureDeleted();
             context.Database.Migrate();
 #endif
         }
